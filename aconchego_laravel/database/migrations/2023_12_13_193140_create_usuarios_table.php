@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('nome');
             $table->string('email')->unique();
             $table->timestamp('email_verificado_em')->nullable();
-            $table->string('password');
+            $table->string('senha');
             $table->boolean('esta_ativo');
-            $table->string('celular')->nullable();
+            $table->string('telefone')->nullable();
             $table->text('endereco')->nullable();
             $table->integer('turma_id_condutor')->unsigned()->nullable();
             $table->integer('turma_id_conduzido')->unsigned()->nullable();
             $table->integer('tipo_id')->unsigned();           
-            $table->rememberToken();            
+            $table->rememberToken();
             $table->timestamps();
 
             //$table->primary('id');

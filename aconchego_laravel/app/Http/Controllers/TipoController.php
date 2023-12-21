@@ -12,7 +12,10 @@ class TipoController extends Controller
      */
     public function index()
     {
-        //
+        $entidade = 'Tipo de Usuário';
+        $dados = Tipo::all();
+        return view('tipo/mostrartodos', compact('dados', 'entidade'));
+
     }
 
     /**

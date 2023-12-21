@@ -11,8 +11,10 @@ class TurmaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    { 
+        $entidade = 'Turma';
+        $dados = Turma::all();
+        return view('turma/mostrartodos', compact('entidade', 'dados'));
     }
 
     /**
@@ -20,7 +22,8 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        //
+        $entidade = 'Turma';
+        return view('turma/criar', compact('entidade'));
     }
 
     /**
@@ -28,7 +31,10 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $turma = new Turma;
+        $turma->nome = $request->nome;
+        $turma->save();
+        return redirect('turma');
     }
 
     /**
@@ -44,7 +50,8 @@ class TurmaController extends Controller
      */
     public function edit(Turma $turma)
     {
-        //
+        $entidade = 'Turma';
+        return view('turma/alterar', compact('entidade','turma'));
     }
 
     /**
@@ -52,7 +59,10 @@ class TurmaController extends Controller
      */
     public function update(Request $request, Turma $turma)
     {
-        //
+        $turma = Turma::find($request->id);
+        $turma->nome = $request->nome;        
+        $turma->update();
+        return redirect('turma');
     }
 
     /**
@@ -60,6 +70,7 @@ class TurmaController extends Controller
      */
     public function destroy(Turma $turma)
     {
-        //
+        $turma->delete();
+        return redirect('turma');
     }
 }

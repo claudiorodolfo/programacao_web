@@ -100,7 +100,7 @@
             name="condutor">
           <?php
               $niveis = new array("","EstakaZero", "FalaMansa", "Bicho de Pé", "Virgulino", "Dominguinhos", "Luiz Gonzaga");
-              foreach( $nivel as $nivel) {
+              foreach($niveis as $nivel) {
             ?>
                 <option value="<?= $nivel ?>" <?= ($item->getNivelConduzido() == $nivel) ? 'selected':''; ?>><?= $nivel ?></option>
             <?php
@@ -113,7 +113,7 @@
           <select class="form-control" id="conduzido" name="conduzido">
             <?php
               $niveis = new array("","EstakaZero", "FalaMansa", "Bicho de Pé", "Virgulino", "Dominguinhos", "Luiz Gonzaga");
-              foreach( $nivel as $nivel) {
+              foreach($niveis as $nivel) {
             ?>
                 <option value="<?= $nivel ?>" <?= ($item->getNivelConduzido() == $nivel) ? 'selected':''; ?>><?= $nivel ?></option>
             <?php

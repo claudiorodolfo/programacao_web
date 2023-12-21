@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('turma', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
+            $table->string('nome')->unique();
             $table->timestamps();
             
             //$table->primary('id');
