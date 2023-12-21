@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\ExameController;
+use App\Http\Controllers\ParametroController;
 use App\Http\Controllers\UsuarioController;
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,14 @@ Route::post('/exame_armazenar', [ExameController::class, 'store'])->name('exame_
 Route::get('/exame_editar/{exame?}', [ExameController::class, 'edit'])->name('exame_editar');
 Route::post('/exame_atualizar', [ExameController::class, 'update'])->name('exame_atualizar');
 Route::get('/exame_apagar/{exame?}', [ExameController::class, 'destroy'])->name('exame_apagar');
+
+//Rotas de Parametro
+Route::get('/parametro', [ParametroController::class, 'index'])->name('parametro');
+Route::get('/parametro_criar', [ParametroController::class, 'create'])->name('parametro_criar');
+Route::post('/parametro_armazenar', [ParametroController::class, 'store'])->name('parametro_armazenar');
+Route::get('/parametro_editar/{parametro?}', [ParametroController::class, 'edit'])->name('parametro_editar');
+Route::post('/parametro_atualizar', [ParametroController::class, 'update'])->name('parametro_atualizar');
+Route::get('/parametro_apagar/{parametro?}', [ParametroController::class, 'destroy'])->name('parametro_apagar');
 //Rotas de Usuario
 Route::get('/usuario', [UsuarioController::class, 'index']);
 Route::get('/usuario_editar', [UsuarioController::class, 'edit']);

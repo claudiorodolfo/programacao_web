@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Parametro;
+use App\Models\Turma;
 use Illuminate\Http\Request;
 
 class ParametroController extends Controller
@@ -12,7 +13,9 @@ class ParametroController extends Controller
      */
     public function index()
     {
-        //
+        $entidade = 'Parametro';
+        $dados = Parametro::all();
+        return view('parametro/mostrartodos', compact('entidade', 'dados'));
     }
 
     /**
@@ -20,7 +23,9 @@ class ParametroController extends Controller
      */
     public function create()
     {
-        //
+        $entidade = 'Parametro';
+        $turmas = Turma::all();          
+        return view('parametro/criar', compact('entidade', 'turmas'));
     }
 
     /**
@@ -28,7 +33,12 @@ class ParametroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parametro = new Parametro;
+        $parametro->turma_id = $request->turma_id;
+        $parametro->velocidade = $request->velocidade;
+        $parametro->quesito = $request->quesito;                
+        $parametro->save();
+        return redirect('parametro');
     }
 
     /**
@@ -44,7 +54,9 @@ class ParametroController extends Controller
      */
     public function edit(Parametro $parametro)
     {
-        //
+        $entidade = 'Parametro';
+        $turmas = Turma::all();        
+        return view('parametro/alterar', compact('entidade','parametro','turmas'));
     }
 
     /**
@@ -52,7 +64,12 @@ class ParametroController extends Controller
      */
     public function update(Request $request, Parametro $parametro)
     {
-        //
+        $parametro = Parametro::find($request->id);
+        $parametro->turma_id = $request->turma_id;
+        $parametro->velocidade = $request->velocidade; 
+        $parametro->quesito = $request->quesito;                         
+        $parametro->update();
+        return redirect('parametro');
     }
 
     /**
@@ -60,6 +77,7 @@ class ParametroController extends Controller
      */
     public function destroy(Parametro $parametro)
     {
-        //
+        $parametro->delete();
+        return redirect('parametro');
     }
 }
