@@ -12,10 +12,9 @@ class TipoController extends Controller
      */
     public function index()
     {
-        $entidade = 'Tipo de Usuário';
+        $entidade = 'Tipo';
         $dados = Tipo::all();
-        return view('tipo/mostrartodos', compact('dados', 'entidade'));
-
+        return view('tipo/mostrartodos', compact('entidade', 'dados'));
     }
 
     /**
@@ -23,7 +22,8 @@ class TipoController extends Controller
      */
     public function create()
     {
-        //
+        $entidade = 'Tipo';
+        return view('tipo/criar', compact('entidade'));
     }
 
     /**
@@ -31,7 +31,10 @@ class TipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipo = new Tipo;
+        $tipo->nome = $request->nome;
+        $tipo->save();
+        return redirect('tipo');
     }
 
     /**
@@ -47,7 +50,8 @@ class TipoController extends Controller
      */
     public function edit(Tipo $tipo)
     {
-        //
+        $entidade = 'Tipo';
+        return view('tipo/alterar', compact('entidade','tipo'));
     }
 
     /**
@@ -55,7 +59,10 @@ class TipoController extends Controller
      */
     public function update(Request $request, Tipo $tipo)
     {
-        //
+        $tipo = Tipo::find($request->id);
+        $tipo->nome = $request->nome;        
+        $tipo->update();
+        return redirect('tipo');
     }
 
     /**
@@ -63,6 +70,7 @@ class TipoController extends Controller
      */
     public function destroy(Tipo $tipo)
     {
-        //
+        $tipo->delete();
+        return redirect('tipo');
     }
 }

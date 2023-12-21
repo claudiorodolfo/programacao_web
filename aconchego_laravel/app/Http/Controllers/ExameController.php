@@ -12,7 +12,10 @@ class ExameController extends Controller
      */
     public function index()
     {
-        //
+        $entidade = 'Exame';
+        $dados = Exame::all();
+        return view('exame/mostrartodos', compact('entidade', 'dados'));
+
     }
 
     /**
@@ -20,7 +23,8 @@ class ExameController extends Controller
      */
     public function create()
     {
-        //
+        $entidade = 'Exame';
+        return view('exame/criar', compact('entidade'));
     }
 
     /**
@@ -28,7 +32,11 @@ class ExameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exame = new Exame;
+        $exame->data = $request->data;        
+        $exame->nome = $request->nome;
+        $exame->save();
+        return redirect('exame');
     }
 
     /**
@@ -44,7 +52,8 @@ class ExameController extends Controller
      */
     public function edit(Exame $exame)
     {
-        //
+        $entidade = 'Exame';
+        return view('exame/alterar', compact('entidade','exame'));
     }
 
     /**
@@ -52,7 +61,11 @@ class ExameController extends Controller
      */
     public function update(Request $request, Exame $exame)
     {
-        //
+        $exame = Exame::find($request->id);
+        $exame->data = $request->data;         
+        $exame->nome = $request->nome;        
+        $exame->update();
+        return redirect('exame');
     }
 
     /**
@@ -60,6 +73,7 @@ class ExameController extends Controller
      */
     public function destroy(Exame $exame)
     {
-        //
+        $exame->delete();
+        return redirect('exame');
     }
 }

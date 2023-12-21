@@ -22,27 +22,29 @@
 </script>    
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('tipo_criar')}}">Novo(a) {{$entidade}}</a>   
+    <a class="btn btn-outline-primary" href="{{route('exame_criar')}}">Novo(a) {{$entidade}}</a>   
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
         <th>Id</th>
+        <th>Data</th>        
         <th>Nome</th>
         <th>Ações</th>
       </tr>
       @foreach ($dados as $item)
         <tr>
             <td>{{$item->id}}</td>
+            <td>{{$item->data}}</td>            
             <td>{{$item->nome}}</td>
             <td>
               <button 
                 class="btn btn-primary" 
-                onclick="window.location.href='{{route('tipo_editar')}}{{'/'.$item->id}}'">
+                onclick="window.location.href='{{route('exame_editar')}}{{'/'.$item->id}}'">
                 Alterar
               </button>
               <button 
                 class="btn btn-danger" 
-                onclick="apagar('{{route('tipo_apagar')}}{{'/'.$item->id}}')">
+                onclick="apagar('{{route('exame_apagar')}}{{'/'.$item->id}}')">
                 Apagar
               </button>
             </td>
