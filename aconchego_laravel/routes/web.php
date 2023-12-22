@@ -6,6 +6,7 @@ use App\Http\Controllers\TipoController;
 use App\Http\Controllers\ExameController;
 use App\Http\Controllers\ParametroController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AvaliacaoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,7 @@ Route::get('/turma_criar', [TurmaController::class, 'create'])->name('turma_cria
 Route::post('/turma_armazenar', [TurmaController::class, 'store'])->name('turma_armazenar');
 Route::get('/turma_editar/{turma?}', [TurmaController::class, 'edit'])->name('turma_editar');
 Route::post('/turma_atualizar', [TurmaController::class, 'update'])->name('turma_atualizar');
+Route::get('/turma_apagar/{turma?}', [TurmaController::class, 'destroy'])->name('turma_apagar');
 
 //Rotas de Tipo
 Route::get('/tipo', [TipoController::class, 'index'])->name('tipo');
@@ -51,6 +53,21 @@ Route::post('/parametro_armazenar', [ParametroController::class, 'store'])->name
 Route::get('/parametro_editar/{parametro?}', [ParametroController::class, 'edit'])->name('parametro_editar');
 Route::post('/parametro_atualizar', [ParametroController::class, 'update'])->name('parametro_atualizar');
 Route::get('/parametro_apagar/{parametro?}', [ParametroController::class, 'destroy'])->name('parametro_apagar');
+
 //Rotas de Usuario
-Route::get('/usuario', [UsuarioController::class, 'index']);
-Route::get('/usuario_editar', [UsuarioController::class, 'edit']);
+Route::get('/usuario', [UsuarioController::class, 'index'])->name('usuario');
+Route::get('/usuario_mostrar/{usuario?}', [UsuarioController::class, 'show'])->name('usuario_mostrar');
+Route::get('/usuario_criar', [UsuarioController::class, 'create'])->name('usuario_criar');
+Route::post('/usuario_armazenar', [UsuarioController::class, 'store'])->name('usuario_armazenar');
+Route::get('/usuario_editar/{usuario?}', [UsuarioController::class, 'edit'])->name('usuario_editar');
+Route::post('/usuario_atualizar', [UsuarioController::class, 'update'])->name('usuario_atualizar');
+Route::get('/usuario_apagar/{usuario?}', [UsuarioController::class, 'destroy'])->name('usuario_apagar');
+
+//Rotas de Avaliacao
+Route::get('/avaliacao', [AvaliacaoController::class, 'index'])->name('avaliacao');
+Route::get('/avaliacao_mostrar/{avaliacao?}', [AvaliacaoController::class, 'show'])->name('avaliacao_mostrar');
+Route::get('/avaliacao_criar', [AvaliacaoController::class, 'create'])->name('avaliacao_criar');
+Route::post('/avaliacao_armazenar', [AvaliacaoController::class, 'store'])->name('avaliacao_armazenar');
+Route::get('/avaliacao_editar/{avaliacao?}', [AvaliacaoController::class, 'edit'])->name('avaliacao_editar');
+Route::post('/avaliacao_atualizar', [AvaliacaoController::class, 'update'])->name('avaliacao_atualizar');
+Route::get('/avaliacao_apagar/{avaliacao?}', [AvaliacaoController::class, 'destroy'])->name('avaliacao_apagar');

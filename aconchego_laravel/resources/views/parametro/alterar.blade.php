@@ -40,7 +40,7 @@
             id="turma_id" 
             name="turma_id">              
               @foreach($turmas as $turma)
-                <option value="{{$turma->id}}" {{($parametro->turma->nome == $turma->nome) ? 'selected':''}}>{{$turma->nome}}</option>
+                <option value="{{$turma->id}}" {{($parametro->turma_id == $turma->id) ? 'selected':''}}>{{$turma->nome}}</option>
               @endforeach
           </select>          
         </div>

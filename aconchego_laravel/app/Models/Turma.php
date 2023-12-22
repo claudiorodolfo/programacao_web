@@ -14,16 +14,21 @@ class Turma extends Model
 
     public function usuariosConduzidosTurma()
     {
-        return $this->hasMany(Usuario::class, 'turma_id_conduzido');
+        return $this->hasMany(Usuario::class, 'turma_id_conduzido', 'id');
     }
 
     public function usuariosCondutoresTurma()
     {
-        return $this->hasMany(Usuario::class, 'turma_id_condutor');
+        return $this->hasMany(Usuario::class, 'turma_id_condutor', 'id');
     }
 
     public function parametrosTurma()
     {
-        return $this->hasMany(Parametro::class, 'turma_id');
-    }      
+        return $this->hasMany(Parametro::class, 'turma_id', 'id');
+    }   
+    
+    public function avaliacoesTurma()
+    {
+        return $this->hasMany(Avaliacao::class, 'turma_id', 'id');
+    }     
 }

@@ -25,5 +25,15 @@ class Usuario extends Model
     public function turmaConduzido()
     {
         return $this->belongsTo(Turma::class, 'turma_id_conduzido');
-    } 
+    }
+    
+    public function avaliacoesProfessorUsuario()
+    {
+        return $this->hasMany(Avaliacao::class, 'professor_id', 'id');
+    }
+
+    public function avaliacoesAlunoUsuario()
+    {
+        return $this->hasMany(Avaliacao::class, 'aluno_id', 'id');
+    }    
 }

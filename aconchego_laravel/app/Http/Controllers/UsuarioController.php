@@ -14,13 +14,9 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //$usuarios = Usuario::with('turmaCondutor', 'turmaConduzido')->get();
-        //return dd($usuarios);
-           $entidade = 'Usuário';        
+        $entidade = 'Usuario';
         $dados = Usuario::all();
-        return dd($dados);
-    //    return view('usuario/mostrartodos', compact('entidade','dados'));
-
+        return view('usuario/mostrartodos', compact('entidade', 'dados'));
     }
 
     /**
@@ -28,7 +24,10 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-
+        $entidade = 'Usuario';
+        $turmas = Turma::all();
+        $tipos = Tipo::all();                  
+        return view('usuario/criar', compact('entidade', 'turmas', 'tipos'));
     }
 
     /**
@@ -36,14 +35,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-        //    ‘product_line_id’ => request(‘product_line_id’),
-        //    ‘description’ => request(‘description’),
-         //   ‘expiration_time’ => request(‘expiration_time’),
-           // ‘price’ => request(‘price’)
-            ];
-            Usuario::create($data);
-            return redirect('usuario/mostrartodos');
+        $usuario = new Usuario;
+        $usuario->nome = $request->nome;
+        $usuario->email = $request->email; 
+        $usuario->telefone = $request->telefone;
+        $usuario->endereco = $request->endereco;
+        $usuario->esta_ativo = $request->esta_ativo;
+        $usuario->senha = $request->senha;        
+        $usuario->turma_id_condutor = $request->turma_id_condutor;
+        $usuario->turma_id_conduzido = $request->turma_id_conduzido;                        
+        $usuario->tipo_id = $request->tipo_id;
+        $usuario->save();
+        return redirect('usuario');        
     }
 
     /**
@@ -51,6 +54,8 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
+        $entidade = 'Usuario';
+        return view('usuario/mostrar', compact('entidade', 'usuario'));        
     }
 
     /**
@@ -58,11 +63,10 @@ class UsuarioController extends Controller
      */
     public function edit(Usuario $usuario)
     {
-        $entidade = 'Usuário';
-        $usuario = Usuario::with('turmaCondutor', 'turmaConduzido', 'tipo')->get()->first();
+        $entidade = 'Usuario';
         $turmas = Turma::all();
-        $tipos = Tipo::all();
-        return view('usuario/editar', compact('entidade','usuario', 'turmas', 'tipos'));
+        $tipos = Tipo::all();               
+        return view('usuario/alterar', compact('entidade','usuario','turmas','tipos'));
     }
 
     /**
@@ -70,13 +74,18 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-     //   $product->product_line_id = $request->product_line_id;
-     //   $product->description = $request->description;
-     //   $product->expiration_time = $request->expiration_time;
-     //   $product->price = $request->price;
-        $usuario->save();
-        
-     //   return redirect(‘product’);
+        $usuario = Usuario::find($request->id);
+        $usuario->nome = $request->nome;
+        $usuario->email = $request->email; 
+        $usuario->telefone = $request->telefone;
+        $usuario->endereco = $request->endereco;
+        $usuario->esta_ativo = $request->esta_ativo;
+        $usuario->senha = $request->senha;        
+        $usuario->turma_id_condutor = $request->turma_id_condutor;
+        $usuario->turma_id_conduzido = $request->turma_id_conduzido;                        
+        $usuario->tipo_id = $request->tipo_id;                                
+        $usuario->update();
+        return redirect('usuario');
     }
 
     /**
@@ -85,6 +94,6 @@ class UsuarioController extends Controller
     public function destroy(Usuario $usuario)
     {
         $usuario->delete();
-        return redirect('usuario/mostrartodos');
+        return redirect('usuario');
     }
 }

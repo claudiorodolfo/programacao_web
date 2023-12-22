@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>      
     <!--Programador-->
-    <title>Controle de {{$entidade}}</title>
+    <title>Controle de {{$entidade}}</title>   
   </head> 
   <body>
     <script type="text/javascript">
@@ -19,30 +19,35 @@
           window.location.href=rota;
         }
     }
-    </script>    
+    </script>     
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('turma_criar')}}">Novo(a) {{$entidade}}</a>   
+    <a class="btn btn-outline-primary" href="{{route('avaliacao_criar')}}">Novo(a) {{$entidade}}</a>   
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
         <th>Id</th>
-        <th>Nome</th>
+        <th>Aluno</th>
         <th>Ações</th>
       </tr>
       @foreach ($dados as $item)
         <tr>
             <td>{{$item->id}}</td>
-            <td>{{$item->nome}}</td>
+            <td>{{$item->usuarioAluno->nome}}</td>
             <td>
               <button 
+                class="btn btn-info" 
+                onclick="window.location.href='{{route('avaliacao_mostrar')}}{{'/'.$item->id}}'">
+                Detalhar
+              </button>              
+              <button 
                 class="btn btn-primary" 
-                onclick="window.location.href='{{route('turma_editar')}}{{'/'.$item->id}}'">
+                onclick="window.location.href='{{route('avaliacao_editar')}}{{'/'.$item->id}}'">
                 Alterar
               </button>
               <button 
                 class="btn btn-danger" 
-                onclick="apagar('{{route('turma_apagar')}}{{'/'.$item->id}}')">
+                onclick="apagar('{{route('avaliacao_apagar')}}{{'/'.$item->id}}')">
                 Apagar
               </button>
             </td>

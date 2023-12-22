@@ -13,9 +13,16 @@
     <title>Controle de {{$entidade}}</title>   
   </head> 
   <body>
+    <script type="text/javascript">
+      function apagar(rota) {
+        if (window.confirm('Deseja realmente apagar o registro?')) {
+          window.location.href=rota;
+        }
+    }
+    </script>     
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="editar.php">Novo(a) {{$entidade}}</a>
+    <a class="btn btn-outline-primary" href="{{route('usuario_criar')}}">Novo(a) {{$entidade}}</a>   
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
@@ -28,9 +35,21 @@
             <td>{{$item->id}}</td>
             <td>{{$item->nome}}</td>
             <td>
-              <button class="btn btn-info" onclick="buscar({{$item->id}})">Detalhar</button>              
-              <button class="btn btn-primary" onclick="atualizar({{$item->id}})">Alterar</button>
-              <button class="btn btn-danger" onclick="apagar({{$item->id}})">Apagar</button>
+              <button 
+                class="btn btn-info" 
+                onclick="window.location.href='{{route('usuario_mostrar')}}{{'/'.$item->id}}'">
+                Detalhar
+              </button>              
+              <button 
+                class="btn btn-primary" 
+                onclick="window.location.href='{{route('usuario_editar')}}{{'/'.$item->id}}'">
+                Alterar
+              </button>
+              <button 
+                class="btn btn-danger" 
+                onclick="apagar('{{route('usuario_apagar')}}{{'/'.$item->id}}')">
+                Apagar
+              </button>
             </td>
         </tr>
       @endforeach
