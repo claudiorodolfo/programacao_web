@@ -16,7 +16,7 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('parametro_armazenar')}}"
+      action="{{route('parametro.store')}}"
       method="post">
       @csrf
 		<h1>Criação de {{$entidade}}</h1>

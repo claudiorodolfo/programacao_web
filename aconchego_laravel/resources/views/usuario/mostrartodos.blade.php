@@ -14,15 +14,29 @@
   </head> 
   <body>
     <script type="text/javascript">
-      function apagar(rota) {
+      function mostrar(id, rota) {
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
+      }
+
+      function atualizar(id, rota) {
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
+      }
+    
+      function apagar(id, rota) {
         if (window.confirm('Deseja realmente apagar o registro?')) {
-          window.location.href=rota;
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
         }
-    }
-    </script>     
+      }
+    </script>    
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('usuario_criar')}}">Novo(a) {{$entidade}}</a>   
+    <a class="btn btn-outline-primary" href="{{route('usuario.create')}}">Novo(a) {{$entidade}}</a>   
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
@@ -37,23 +51,33 @@
             <td>
               <button 
                 class="btn btn-info" 
-                onclick="window.location.href='{{route('usuario_mostrar')}}{{'/'.$item->id}}'">
+                onclick="mostrar('mostrar','{{route('usuario.show', $item->id)}}')">
                 Detalhar
-              </button>              
+              </button>             
               <button 
                 class="btn btn-primary" 
-                onclick="window.location.href='{{route('usuario_editar')}}{{'/'.$item->id}}'">
+                onclick="atualizar('atualizar','{{route('usuario.edit', $item->id)}}')">
                 Alterar
               </button>
               <button 
                 class="btn btn-danger" 
-                onclick="apagar('{{route('usuario_apagar')}}{{'/'.$item->id}}')">
+                onclick="apagar('apagar','{{route('usuario.destroy', $item->id)}}')">
                 Apagar
               </button>
             </td>
         </tr>
       @endforeach
     </table>
-    </div>       
+    </div>
+
+    <form id="mostrar" action="" method="get">
+      @csrf
+    </form>     
+    <form id="atualizar" action="" method="get">
+      @csrf
+    </form>
+    <form id="apagar" action="" method="post">
+      @csrf @method('DELETE')
+    </form>            
   </body>
 </html>

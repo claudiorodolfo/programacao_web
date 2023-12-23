@@ -16,7 +16,7 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('avaliacao_armazenar')}}"
+      action="{{route('avaliacao.store')}}"
       method="post">
       @csrf
 		<h1>Edição de {{$entidade}}</h1>

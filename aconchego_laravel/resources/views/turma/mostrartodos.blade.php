@@ -14,15 +14,23 @@
   </head> 
   <body>
     <script type="text/javascript">
-      function apagar(rota) {
-        if (window.confirm('Deseja realmente apagar o registro?')) {
-          window.location.href=rota;
+      function atualizar(id, rota) {
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
         }
-    }
-    </script>    
+    
+      function apagar(id, rota) {
+        if (window.confirm('Deseja realmente apagar o registro?')) {
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
+        }
+      }
+    </script>   
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('turma_criar')}}">Novo(a) {{$entidade}}</a>   
+    <a class="btn btn-outline-primary" href="{{route('turma.create')}}">Novo(a) {{$entidade}}</a>   
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
@@ -37,18 +45,25 @@
             <td>
               <button 
                 class="btn btn-primary" 
-                onclick="window.location.href='{{route('turma_editar')}}{{'/'.$item->id}}'">
+                onclick="atualizar('atualizar','{{route('turma.edit', $item->id)}}')">
                 Alterar
               </button>
               <button 
                 class="btn btn-danger" 
-                onclick="apagar('{{route('turma_apagar')}}{{'/'.$item->id}}')">
+                onclick="apagar('apagar','{{route('turma.destroy', $item->id)}}')">
                 Apagar
               </button>
             </td>
         </tr>
       @endforeach
     </table>
-    </div>       
+    </div> 
+
+    <form id="atualizar" action="" method="get">
+      @csrf
+    </form>
+    <form id="apagar" action="" method="post">
+      @csrf @method('DELETE')
+    </form>           
   </body>
 </html>

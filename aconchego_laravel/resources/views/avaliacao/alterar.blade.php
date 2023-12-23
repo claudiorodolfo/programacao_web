@@ -16,9 +16,9 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('avaliacao_armazenar')}}"
+      action="{{route('avaliacao.update')}}"
       method="post">
-      @csrf
+      @csrf @method('put')
 		<h1>Edição de {{$entidade}}</h1>
 		<br>
     <div class="form-group">
@@ -31,7 +31,55 @@
         name="id" 
         value="{{$avaliacao->id}}"
          />
-    </div>      
+    </div> 
+    <div class="form-group">
+      <label for="exame_id" class="text-danger">*Exame:</label>
+      <select 
+        class="form-control" 
+        id="exame_id" 
+        name="exame_id"
+        Required >                      
+          @foreach($exames as $exame)
+            <option value="{{$exame->id}}" {{($avaliacao->exame_id == $exame->id) ? 'selected':''}}>{{$exame->data}}</option>
+          @endforeach
+      </select>
+    </div>   
+    <div class="form-group">
+      <label for="turma_id"  class="text-danger">*Turma:</label>
+      <select 
+        class="form-control" 
+        id="turma_id" 
+        name="turma_id"
+        Required >                      
+          @foreach($turmas as $turma)
+            <option value="{{$turma->id}}" {{($avaliacao->turma_id == $turma->id) ? 'selected':''}}>{{$turma->nome}}</option>
+          @endforeach
+      </select>
+    </div>    
+    <div class="form-group">
+      <label for="aluno_id" class="text-danger">*Aluno:</label>
+      <select 
+        class="form-control" 
+        id="aluno_id" 
+        name="aluno_id"
+        Required >                     
+          @foreach($alunos as $aluno)
+            <option value="{{$aluno->id}}" {{($avaliacao->aluno_id == $aluno->id) ? 'selected':''}}>{{$aluno->nome}}</option>
+          @endforeach
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="professor_id" class="text-danger">*Professor:</label>
+      <select 
+        class="form-control" 
+        id="professor_id" 
+        name="professor_id"
+        Required >                     
+          @foreach($professores as $professor)
+            <option value="{{$professor->id}}" {{($avaliacao->professor_id == $professor->id) ? 'selected':''}}>{{$professor->nome}}</option>
+          @endforeach
+      </select>
+    </div>              
     <div class="form-group">
         <label for="papel" class="text-danger">*Papel:</label>
         <select 
@@ -39,28 +87,28 @@
           id="papel" 
           name="papel" 
           Required >
-          <option value="Condutor(a)">Condutor(a)</option>
-          <option value="Conduzida(o)">Conduzida(o)</option>
+          <option value="Condutor(a)" {{($avaliacao->papel == "Condutor(a)") ? 'selected':''}}>Condutor(a)</option>
+          <option value="Conduzida(o)" {{($avaliacao->papel == "Conduzida(o)") ? 'selected':''}}>Conduzida(o)</option>
         </select>
-      </div>    
+      </div>   
       <div class="form-group">
-        <label for="observacao" class="text-danger">*Observação:</label>
-        <input type="text" 
+        <label for="observacao">Observação:</label>
+        <textarea 
           class="form-control" 
           id="observacao" 
-          name="observacao" 
-          value="{{$avaliacao->observacao}}"
-          Required />
-      </div>
+          rows="3" 
+          name="observacao">{{$avaliacao->observacao}}</textarea>
+      </div> 
       <div class="form-group">
-        <label for="status" class="text-danger">*Status:</label>
+        <label for="status">Status:</label>
         <select 
           class="form-control" 
           id="status" 
           name="status" 
           Required >
-          <option value="Reprovado(a)">Reprovado(a)</option>
-          <option value="Aprovado(a)">Aprovado(a)</option>
+          <option value=""></option>          
+          <option value="Reprovado(a)" {{($avaliacao->status == "Reprovado(a)") ? 'selected':''}}>Reprovado(a)</option>
+          <option value="Aprovado(a)" {{($avaliacao->status == "Aprovado(a)") ? 'selected':''}}>Aprovado(a)</option>
         </select>
       </div> 
       <div class="form-group">
@@ -70,54 +118,10 @@
           id="rascunho" 
           name="rascunho" 
           Required >
-          <option value="0">Não</option>
-          <option value="1">Sim</option>
+          <option value="0" {{($avaliacao->rascunho == 0) ? 'selected':''}}>Não</option>
+          <option value="1" {{($avaliacao->rascunho == 1) ? 'selected':''}}>Sim</option>
         </select>
-      </div>  
-      <div class="form-group">
-        <label for="turma_id">Turma:</label>
-        <select 
-          class="form-control" 
-          id="turma_id" 
-          name="turma_id">              
-            @foreach($turmas as $turma)
-              <option value="{{$turma->id}}">{{$turma->nome}}</option>
-            @endforeach
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="exame_id">Exame:</label>
-        <select 
-          class="form-control" 
-          id="exame_id" 
-          name="exame_id">              
-            @foreach($exames as $exame)
-              <option value="{{$exame->id}}" {{($avaliacao->exame_id == $exame->id) ? 'selected':''}}>{{$exame->data}}</option>
-            @endforeach
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="aluno_id">Aluno:</label>
-        <select 
-          class="form-control" 
-          id="aluno_id" 
-          name="aluno_id">              
-            @foreach($alunos as $aluno)
-              <option value="{{$aluno->id}}" {{($avaliacao->aluno_id == $aluno->id) ? 'selected':''}}>{{$aluno->nome}}</option>
-            @endforeach
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="professor_id">Professor:</label>
-        <select 
-          class="form-control" 
-          id="professor_id" 
-          name="professor_id">              
-            @foreach($professores as $professor)
-              <option value="{{$professor->id}}" {{($avaliacao->professor_id == $professor->id) ? 'selected':''}}>{{$professor->nome}}</option>
-            @endforeach
-        </select>
-      </div>                
+      </div>              
         <br />
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a class="btn btn-danger" href="{{route('avaliacao')}}">Cancelar</a>

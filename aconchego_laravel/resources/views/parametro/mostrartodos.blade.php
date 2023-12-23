@@ -13,16 +13,24 @@
     <title>Controle de {{$entidade}}</title>
   </head> 
   <body>
-<script type="text/javascript">
-  function apagar(rota) {
-    if (window.confirm('Deseja realmente apagar o registro?')) {
-      window.location.href=rota;
-    }
-}
-</script>    
+    <script type="text/javascript">
+      function atualizar(id, rota) {
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
+        }
+    
+      function apagar(id, rota) {
+        if (window.confirm('Deseja realmente apagar o registro?')) {
+          var form = document.getElementById(id);
+          form.action = rota;
+          form.submit();
+        }
+      }
+    </script>
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('parametro_criar')}}">Novo(a) {{$entidade}}</a>   
+    <a class="btn btn-outline-primary" href="{{route('parametro.create')}}">Novo(a) {{$entidade}}</a>   
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
@@ -41,18 +49,25 @@
             <td>
               <button 
                 class="btn btn-primary" 
-                onclick="window.location.href='{{route('parametro_editar')}}{{'/'.$item->id}}'">
+                onclick="atualizar('atualizar','{{route('parametro.edit', $item->id)}}')">
                 Alterar
               </button>
               <button 
                 class="btn btn-danger" 
-                onclick="apagar('{{route('parametro_apagar')}}{{'/'.$item->id}}')">
+                onclick="apagar('apagar','{{route('parametro.destroy', $item->id)}}')">
                 Apagar
               </button>
             </td>
         </tr>
       @endforeach
     </table>
-    </div>       
+    </div> 
+
+    <form id="atualizar" action="" method="get">
+      @csrf
+    </form>
+    <form id="apagar" action="" method="post">
+      @csrf @method('DELETE')
+    </form>           
   </body>
 </html>

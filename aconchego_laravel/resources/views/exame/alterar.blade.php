@@ -16,9 +16,9 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('exame_atualizar')}}"
+      action="{{route('exame.update')}}"
       method="post">
-      @csrf
+      @csrf @method('put')
 		<h1>Edição de {{$entidade}}</h1>
 		<br>
         <div class="form-group">

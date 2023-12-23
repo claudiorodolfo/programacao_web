@@ -16,9 +16,9 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('turma_atualizar')}}"
+      action="{{route('turma.update')}}"
       method="post">
-      @csrf
+      @csrf @method('put')
 		<h1>Edição de {{$entidade}}</h1>
 		<br>
         <div class="form-group">

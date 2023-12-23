@@ -15,10 +15,10 @@
   <body>
     <div class="container">
       <form
-      enctype="multipart/form-data"
-      action="{{route('parametro_atualizar')}}"
-      method="post">
-      @csrf
+        enctype="multipart/form-data"
+        action="{{route('parametro.update')}}"
+        method="post">
+        @csrf @method('put')
 		<h1>Edição de {{$entidade}}</h1>
 		<br>
         <div class="form-group">

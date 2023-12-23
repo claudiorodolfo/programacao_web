@@ -16,7 +16,7 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('exame_armazenar')}}"
+      action="{{route('exame.store')}}"
       method="post">
       @csrf
 		<h1>Criação de {{$entidade}}</h1>

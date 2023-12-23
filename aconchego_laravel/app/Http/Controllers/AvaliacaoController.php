@@ -15,7 +15,7 @@ class AvaliacaoController extends Controller
      */
     public function index()
     {
-        $entidade = 'Avaliacao';
+        $entidade = 'Avaliação';
         $dados = Avaliacao::all();
         return view('avaliacao/mostrartodos', compact('entidade', 'dados'));
     }
@@ -48,6 +48,8 @@ class AvaliacaoController extends Controller
         $avaliacao->status = $request->status;
         $avaliacao->rascunho = $request->rascunho;                        
         $avaliacao->save();
+        //criar várias notas relacionadas
+        //a essa avaliação criada
         return redirect('avaliacao');
     }
 
@@ -56,7 +58,7 @@ class AvaliacaoController extends Controller
      */
     public function show(Avaliacao $avaliacao)
     {
-        $entidade = 'Avaliacao';
+        $entidade = 'Avaliação';
         return view('avaliacao/mostrar', compact('entidade', 'avaliacao'));        
     }
 
@@ -65,7 +67,7 @@ class AvaliacaoController extends Controller
      */
     public function edit(Avaliacao $avaliacao)
     {
-        $entidade = 'Avaliacao';
+        $entidade = 'Avaliação';
         $exames = Exame::all();
         $turmas = Turma::all();   
         $professores = Usuario::where('tipo_id',8)->orWhere('tipo_id',9)->get();//professor e monitor  
@@ -84,7 +86,7 @@ class AvaliacaoController extends Controller
         $avaliacao->aluno_id = $request->aluno_id;
         $avaliacao->professor_id = $request->professor_id;
         $avaliacao->papel = $request->papel;
-        $avaliacao->observacao = $observacao->senha;        
+        $avaliacao->observacao = $request->observacao;        
         $avaliacao->status = $request->status;
         $avaliacao->rascunho = $request->rascunho;                        
         $avaliacao->update();
