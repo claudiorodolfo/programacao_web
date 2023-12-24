@@ -48,7 +48,7 @@
                 onclick="atualizar('atualizar','{{route('tipo.edit', $item->id)}}')">
                 Alterar
               </button>
-              <button 
+              <button
                 class="btn btn-danger" 
                 onclick="apagar('apagar','{{route('tipo.destroy', $item->id)}}')">
                 Apagar

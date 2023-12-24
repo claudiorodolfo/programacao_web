@@ -36,7 +36,7 @@ class ExameController extends Controller
         $exame->data = $request->data;        
         $exame->nome = $request->nome;
         $exame->save();
-        return redirect('exame');
+        return redirect()->route('exame.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class ExameController extends Controller
         $exame->data = $request->data;         
         $exame->nome = $request->nome;        
         $exame->update();
-        return redirect('exame');
+        return redirect()->route('exame.index');
     }
 
     /**
@@ -74,6 +74,6 @@ class ExameController extends Controller
     public function destroy(Exame $exame)
     {
         $exame->delete();
-        return redirect('exame');
+        return redirect()->route('exame.index');
     }
 }

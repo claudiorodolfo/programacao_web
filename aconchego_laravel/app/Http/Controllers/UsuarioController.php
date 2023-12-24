@@ -46,7 +46,7 @@ class UsuarioController extends Controller
         $usuario->turma_id_conduzido = $request->turma_id_conduzido;                        
         $usuario->tipo_id = $request->tipo_id;
         $usuario->save();
-        return redirect('usuario');        
+        return redirect()->route('usuario.index');
     }
 
     /**
@@ -85,15 +85,15 @@ class UsuarioController extends Controller
         $usuario->turma_id_conduzido = $request->turma_id_conduzido;                        
         $usuario->tipo_id = $request->tipo_id;                                
         $usuario->update();
-        return redirect('usuario');
+        return redirect()->route('usuario.index');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Usuario $usuario)
     {
         $usuario->delete();
-        return redirect('usuario');
+        return redirect()->route('usuario.index');
     }
 }

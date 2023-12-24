@@ -38,7 +38,7 @@ class ParametroController extends Controller
         $parametro->velocidade = $request->velocidade;
         $parametro->quesito = $request->quesito;                
         $parametro->save();
-        return redirect('parametro');
+        return redirect()->route('parametro.index');
     }
 
     /**
@@ -69,7 +69,7 @@ class ParametroController extends Controller
         $parametro->velocidade = $request->velocidade; 
         $parametro->quesito = $request->quesito;                         
         $parametro->update();
-        return redirect('parametro');
+        return redirect()->route('parametro.index');
     }
 
     /**
@@ -78,6 +78,6 @@ class ParametroController extends Controller
     public function destroy(Parametro $parametro)
     {
         $parametro->delete();
-        return redirect('parametro');
+        return redirect()->route('parametro.index');
     }
 }

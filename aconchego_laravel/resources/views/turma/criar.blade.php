@@ -44,7 +44,7 @@
         </div>
         <br />
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a class="btn btn-danger" href="{{route('turma')}}">Cancelar</a>
+        <a class="btn btn-danger" href="{{route('turma.index')}}">Cancelar</a>
       </form>
     </div>
   </body>

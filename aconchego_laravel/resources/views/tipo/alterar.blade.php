@@ -16,7 +16,7 @@
     <div class="container">
       <form
       enctype="multipart/form-data"
-      action="{{route('tipo.update')}}"
+      action="{{route('tipo.update', $tipo->id)}}"
       method="post">
       @csrf @method('put')
 		<h1>Edição de {{$entidade}}</h1>
@@ -45,7 +45,7 @@
         </div>
         <br />
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a class="btn btn-danger" href="{{route('tipo')}}">Cancelar</a>
+        <a class="btn btn-danger" href="{{route('tipo.index')}}">Cancelar</a>
       </form>
     </div>
   </body>

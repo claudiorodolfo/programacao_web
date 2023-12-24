@@ -34,7 +34,7 @@ class TurmaController extends Controller
         $turma = new Turma;
         $turma->nome = $request->nome;
         $turma->save();
-        return redirect('turma');
+        return redirect()->route('turma.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class TurmaController extends Controller
         $turma = Turma::find($request->id);
         $turma->nome = $request->nome;        
         $turma->update();
-        return redirect('turma');
+        return redirect()->route('turma.index');
     }
 
     /**
@@ -71,6 +71,6 @@ class TurmaController extends Controller
     public function destroy(Turma $turma)
     {
         $turma->delete();
-        return redirect('turma');
+        return redirect()->route('turma.index');
     }
 }

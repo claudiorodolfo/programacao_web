@@ -34,7 +34,7 @@ class TipoController extends Controller
         $tipo = new Tipo;
         $tipo->nome = $request->nome;
         $tipo->save();
-        return redirect('tipo');
+        return redirect()->route('tipo.index');
     }
 
     /**
@@ -62,7 +62,7 @@ class TipoController extends Controller
         $tipo = Tipo::find($request->id);
         $tipo->nome = $request->nome;        
         $tipo->update();
-        return redirect('tipo');
+        return redirect()->route('tipo.index');
     }
 
     /**
@@ -71,6 +71,6 @@ class TipoController extends Controller
     public function destroy(Tipo $tipo)
     {
         $tipo->delete();
-        return redirect('tipo');
+        return redirect()->route('tipo.index');
     }
 }

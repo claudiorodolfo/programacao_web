@@ -15,7 +15,7 @@
   <body>     
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('usuario')}}">Voltar</a>  
+    <a class="btn btn-outline-primary" href="{{route('usuario.index')}}">Voltar</a>  
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>

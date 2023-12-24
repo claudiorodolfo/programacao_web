@@ -53,7 +53,7 @@
         </div>
         <br />
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a class="btn btn-danger" href="{{route('exame')}}">Cancelar</a>
+        <a class="btn btn-danger" href="{{route('exame.index')}}">Cancelar</a>
       </form>
     </div>
   </body>

@@ -50,7 +50,7 @@ class AvaliacaoController extends Controller
         $avaliacao->save();
         //criar várias notas relacionadas
         //a essa avaliação criada
-        return redirect('avaliacao');
+        return redirect()->route('avaliacao.index');
     }
 
     /**
@@ -90,7 +90,7 @@ class AvaliacaoController extends Controller
         $avaliacao->status = $request->status;
         $avaliacao->rascunho = $request->rascunho;                        
         $avaliacao->update();
-        return redirect('avaliacao');
+        return redirect()->route('avaliacao.index');
     }
 
     /**
@@ -99,6 +99,6 @@ class AvaliacaoController extends Controller
     public function destroy(Avaliacao $avaliacao)
     {
         $avaliacao->delete();
-        return redirect('avaliacao');
+        return redirect()->route('avaliacao.index');
     }
 }
