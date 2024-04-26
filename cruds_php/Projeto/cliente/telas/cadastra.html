@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  <html lang="pt-br">
+    <head>
+    <meta charset="utf-8"/>
+    <title>Cadastramento de Clientes</title>
+  </head>
+  <body>
+    <form action="../controlador/processa_cadastra.php" method="post">
+		<label>Nome:
+		  <input type="text" name="nome" required>
+		</label>
+		<br>
+		<label>E-mail:		
+		  <input type="email" name="email" required>
+		</label>
+		<br>
+		<label>Id Empresa:
+		  <input type="number" name="id_empresa" required>
+		</label>
+		<br>
+        <input type="submit" value="Salvar">
+	</form>
+  </body>
+</html>
