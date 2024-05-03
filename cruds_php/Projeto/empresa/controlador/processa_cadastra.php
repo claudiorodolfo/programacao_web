@@ -1,5 +1,5 @@
 <?php
-	require_once '../../orm/Empresa.class.php';
+	require_once '../../orm/Empresa.php';
 	require_once '../bd/BD.php';
 	
 	$empresa = new Empresa();

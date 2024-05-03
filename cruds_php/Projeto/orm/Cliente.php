@@ -6,6 +6,7 @@
 	class Cliente {
 		private $id;
 		private $nome;
+		private $senha;		
 		private $email;
 		private $idEmpresa;
 		
@@ -31,6 +32,14 @@
 		
 		public function setEmail($email) {
 			$this->email = $email;
+		}
+		
+		public function getSenha() {
+			return $this->senha;
+		}
+		
+		public function setSenha($senha) {
+			$this->senha = $senha;
 		}
 		
 		public function getIdEmpresa() {

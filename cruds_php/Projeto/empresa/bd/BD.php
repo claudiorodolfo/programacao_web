@@ -1,13 +1,11 @@
 <?php
 
-require_once '../../orm/Empresa.class.php';
+require_once '../../orm/Empresa.php';
 
 class BD {
 
 	public function cadastra($empresa) {
 		$bd = mysqli_connect('localhost', 'root', '', 'Projeto');
-		//Exemplo de instrução SQL
-		//insert into Empresa (nome) values ('Instituto Federal da Bahia')
 		$sql = "insert into Empresa (nome) values ('{$empresa->getNome()}')";
 		//print $sql;
 		print 'Cadastro realizado com sucesso!';
@@ -29,6 +27,18 @@ class BD {
 	}
 
 	public function selecionaTodos() {
+		$bd = mysqli_connect('localhost', 'root', '', 'Projeto');
+		$sql = "select * from empresa";
+		$dados = mysqli_query($bd, $sql);
+		$arrayEmpresas = [];
+		for($i = 0; $i< mysqli_num_rows($dados); $i++) {
+			$linha = mysqli_fetch_array($dados);
+			$e = new Empresa();
+			$e->setId($linha['id']);
+			$e->setNome($linha['nome']);
+			$arrayEmpresas[$i] = $e;
+		}
+		return $arrayEmpresas;
 
 	}	
 }
