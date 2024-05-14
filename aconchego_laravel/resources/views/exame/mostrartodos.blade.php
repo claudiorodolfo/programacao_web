@@ -14,11 +14,16 @@
   </head> 
   <body>
     <script type="text/javascript">
+      function formataData(data) {
+        const novaData = data.split('-').reverse().join('/');
+      
+      }
+
       function atualizar(id, rota) {
           var form = document.getElementById(id);
           form.action = rota;
           form.submit();
-        }
+      }
     
       function apagar(id, rota) {
         if (window.confirm('Deseja realmente apagar o registro?')) {
@@ -34,14 +39,14 @@
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
-        <th>Id</th>
+        <!--<th>Id</th>-->
         <th>Data</th>        
         <th>Nome</th>
         <th>Ações</th>
       </tr>
       @foreach ($dados as $item)
         <tr>
-            <td>{{$item->id}}</td>
+            <!--<td>{{$item->id}}</td>-->
             <td>{{$item->data}}</td>            
             <td>{{$item->nome}}</td>
             <td>

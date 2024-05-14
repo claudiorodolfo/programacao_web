@@ -34,13 +34,13 @@
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
-        <th>Id</th>
+        <!--<th>Id</th>-->
         <th>Nome</th>
         <th>Ações</th>
       </tr>
       @foreach ($dados as $item)
         <tr>
-            <td>{{$item->id}}</td>
+            <!--<td>{{$item->id}}</td>-->
             <td>{{$item->nome}}</td>
             <td>
               <button 

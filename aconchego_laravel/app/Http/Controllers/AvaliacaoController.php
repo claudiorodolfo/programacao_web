@@ -6,6 +6,9 @@ use App\Models\Avaliacao;
 use App\Models\Usuario;
 use App\Models\Turma;
 use App\Models\Exame;
+use App\Models\Parametro;
+use App\Models\Nota;
+use App\Models\Tipo;
 use Illuminate\Http\Request;
 
 class AvaliacaoController extends Controller
@@ -27,9 +30,15 @@ class AvaliacaoController extends Controller
     {
         $entidade = 'Avaliação';
         $exames = Exame::all();
-        $turmas = Turma::all();   
-        $professores = Usuario::where('tipo_id',8)->orWhere('tipo_id',9)->get();//professor e monitor  
-        $alunos =  Usuario::where('tipo_id',10)->get();                     
+        $turmas = Turma::all(); 
+        $idProfessor = Tipo::where('nome','Professor')->get('id');
+        $idMonitor   = Tipo::where('nome','Monitor')->get('id');
+        $idAluno     = Tipo::where('nome','Aluno')->get('id');  
+        $idProfessor = $idProfessor[0]->id;  
+        $idMonitor   = $idMonitor[0]->id;   
+        $idAluno     = $idAluno[0]->id;                        
+        $professores = Usuario::where('tipo_id',$idProfessor)->orWhere('tipo_id',$idMonitor)->get();//professor e monitor  
+        $alunos =  Usuario::where('tipo_id',$idAluno)->get();                                         
         return view('avaliacao/criar', compact('entidade','exames','turmas','professores', 'alunos'));                
     }
 
@@ -50,7 +59,19 @@ class AvaliacaoController extends Controller
         $avaliacao->save();
         //criar várias notas relacionadas
         //a essa avaliação criada
+        $parametros = Parametro::where('turma_id', $avaliacao->turma_id)
+                ->orderBy('velocidade')
+                ->get();
+
+        foreach ($parametros as $parametro) {
+            Nota::create([
+                'avaliacao_id' => $avaliacao->id,
+                'parametro_id' => $parametro->id,
+                'valor' => 0,
+            ]);
+        }            
         return redirect()->route('avaliacao.index');
+
     }
 
     /**
@@ -69,9 +90,15 @@ class AvaliacaoController extends Controller
     {
         $entidade = 'Avaliação';
         $exames = Exame::all();
-        $turmas = Turma::all();   
-        $professores = Usuario::where('tipo_id',8)->orWhere('tipo_id',9)->get();//professor e monitor  
-        $alunos =  Usuario::where('tipo_id',10)->get();                                         
+        $turmas = Turma::all();  
+        $idProfessor = Tipo::where('nome','Professor')->get('id');
+        $idMonitor   = Tipo::where('nome','Monitor')->get('id');
+        $idAluno     = Tipo::where('nome','Aluno')->get('id');           
+        $idProfessor = $idProfessor[0]->id;  
+        $idMonitor   = $idMonitor[0]->id;   
+        $idAluno     = $idAluno[0]->id;          
+        $professores = Usuario::where('tipo_id',$idProfessor)->orWhere('tipo_id',$idMonitor)->get();//professor e monitor  
+        $alunos =  Usuario::where('tipo_id',$idAluno)->get();                                         
         return view('avaliacao/alterar', compact('entidade','avaliacao','exames','turmas','professores', 'alunos'));
     }
 

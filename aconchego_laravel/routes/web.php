@@ -27,7 +27,9 @@ Route::resource("tipo", TipoController::class);
 Route::resource("exame", ExameController::class);
 Route::resource("parametro", ParametroController::class);
 Route::resource("usuario", UsuarioController::class);
-Route::resource("avaliacao", AvaliacaosController::class);
+Route::resource("avaliacao", AvaliacaoController::class);
+
+Route::get('/usuario/{usuario?}/feedback', [UsuarioController::class, 'feedback'])->name('usuario.feedback');
 
 //Rotas de Turma
 /*

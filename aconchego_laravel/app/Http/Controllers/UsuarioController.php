@@ -5,10 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Turma;
 use App\Models\Tipo;
+use App\Models\Avaliacao;
+use App\Models\Nota;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
+    /**
+     * Show the user feedback.
+     */
+    public function feedback(Usuario $usuario)
+    {
+        $entidade = 'Usuario';
+        $avaliacao = Avaliacao::where('aluno_id', $usuario->id)->get();
+        $idAvaliacao = $avaliacao[1]->id;
+
+        $cabecalhoFeedback = Avaliacao::select('avaliacao.papel',
+                'avaliacao.status', 
+                'avaliacao.observacao', 
+                'aluno.nome as aluno', 
+                'professor.nome as professor', 
+                'turma.nome as turma', 
+                'exame.data as exame')
+            ->join('usuario as aluno', 'avaliacao.aluno_id', '=', 'aluno.id')
+            ->join('usuario as professor', 'avaliacao.professor_id', '=', 'professor.id')
+            ->join('turma', 'avaliacao.turma_id', '=', 'turma.id')
+            ->join('exame', 'avaliacao.exame_id', '=', 'exame.id')
+            ->where('Avaliacao.id', $idAvaliacao)
+            ->first();      
+        
+        $corpoFeedback = Nota::select('nota.valor', 
+                'parametro.velocidade', 
+                'parametro.quesito')
+            ->join('parametro', 'nota.parametro_id' , '=', 'parametro.id')
+            ->where('nota.avaliacao_id', $idAvaliacao)
+            ->get();
+                   
+        return view('usuario/feedback', compact('entidade', 'cabecalhoFeedback', 'corpoFeedback'));
+    }
     /**
      * Display a listing of the resource.
      */

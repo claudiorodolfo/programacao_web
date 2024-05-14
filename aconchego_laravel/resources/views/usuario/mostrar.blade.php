@@ -12,19 +12,24 @@
     <!--Programador-->
     <title>Controle de {{$entidade}}</title>   
   </head> 
-  <body>     
+  <body>        
     <div class="container">
     <br>
-    <a class="btn btn-outline-primary" href="{{route('usuario.index')}}">Voltar</a>  
+    <a
+      style="border-radius:50px"
+      class="btn btn-outline-primary" 
+      href="{{route('usuario.index')}}">
+      Voltar
+    </a> 
     <br><br>
     <table class='table table-striped table-bordered'>
-      <tr>
+      <!--<tr>
         <th>Id</th>
       </tr>
       <tr>
         <td>{{$usuario->id}}</td>
       </tr> 
-      <tr>
+      <tr>-->
         <th>Nome</th>
       </tr>
       <tr>
@@ -40,7 +45,7 @@
         <th>Telefone</th>
       </tr>
       <tr>
-        <td>{{$usuario->telefone}}</td>
+        <td id="telefone">{{$usuario->telefone}}</td>
       </tr> 
       <tr>
         <th>Endereço</th>
@@ -52,13 +57,13 @@
         <th>Turma Condutor(a)</th>
       </tr>
       <tr>
-        <td>{{$usuario->turmaCondutor->nome}}</td>
+        <td>{{$usuario->turmaCondutor->nome ?? "" }}</td>
       </tr> 
       <tr>
         <th>Turma Conduzido(a)</th>
       </tr>
       <tr>
-        <td>{{$usuario->turmaConduzido->nome}}</td>
+        <td>{{$usuario->turmaConduzido->nome ?? "" }}</td>
       </tr> 
       <tr>
         <th>Tipo</th>
@@ -73,6 +78,6 @@
         <td>{{($usuario->esta_ativo == 0) ? "Não" : "Sim"}}</td>
       </tr>                                           
     </table>
-    </div>       
+    </div>          
   </body>
 </html>

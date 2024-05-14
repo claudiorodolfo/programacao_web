@@ -72,7 +72,8 @@
           <select 
             class="form-control" 
             id="turma_id_condutor" 
-            name="turma_id_condutor">              
+            name="turma_id_condutor">   
+              <option value=""></option>                       
               @foreach($turmas as $turma)
                 <option value="{{$turma->id}}">{{$turma->nome}}</option>
               @endforeach
@@ -83,7 +84,8 @@
           <select 
             class="form-control" 
             id="turma_id_conduzido" 
-            name="turma_id_conduzido">             
+            name="turma_id_conduzido">   
+              <option value=""></option>                         
               @foreach($turmas as $turma)
                 <option value="{{$turma->id}}">{{$turma->nome}}</option>
               @endforeach

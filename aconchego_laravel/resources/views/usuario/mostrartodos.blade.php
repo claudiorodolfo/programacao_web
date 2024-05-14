@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>      
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">    
     <!--Programador-->
     <title>Controle de {{$entidade}}</title>   
   </head> 
@@ -40,26 +41,31 @@
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
-        <th>Id</th>
-        <th>Nome</th>
+        <!--<th>Id</th>-->
+        <th onclick="ordenar('nome')">Nome</th>
+        <th onclick="ordenar('id_tipo')">Tipo</th>        
         <th>Ações</th>
       </tr>
       @foreach ($dados as $item)
         <tr>
-            <td>{{$item->id}}</td>
+          <!--<td>{{$item->id}}</td>-->
             <td>{{$item->nome}}</td>
+            <td>{{$item->tipo->nome}}</td>            
             <td>
               <button 
+                style="border-radius:50px"              
                 class="btn btn-info" 
                 onclick="mostrar('mostrar','{{route('usuario.show', $item->id)}}')">
                 Detalhar
               </button>             
-              <button 
+              <button
+                style="border-radius:50px"
                 class="btn btn-primary" 
                 onclick="atualizar('atualizar','{{route('usuario.edit', $item->id)}}')">
                 Alterar
               </button>
               <button 
+                style="border-radius:50px"              
                 class="btn btn-danger" 
                 onclick="apagar('apagar','{{route('usuario.destroy', $item->id)}}')">
                 Apagar
