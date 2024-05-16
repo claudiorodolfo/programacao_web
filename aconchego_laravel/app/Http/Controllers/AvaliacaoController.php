@@ -13,12 +13,13 @@ use Illuminate\Http\Request;
 
 class AvaliacaoController extends Controller
 {
+    private $entidade = 'Avaliação';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $entidade = 'Avaliação';
+        $entidade = $this->entidade;
         $dados = Avaliacao::all();
         return view('avaliacao/mostrartodos', compact('entidade', 'dados'));
     }
@@ -28,7 +29,7 @@ class AvaliacaoController extends Controller
      */
     public function create()
     {
-        $entidade = 'Avaliação';
+        $entidade = $this->entidade;
         $exames = Exame::all();
         $turmas = Turma::all(); 
         $idProfessor = Tipo::where('nome','Professor')->get('id');
@@ -79,7 +80,7 @@ class AvaliacaoController extends Controller
      */
     public function show(Avaliacao $avaliacao)
     {
-        $entidade = 'Avaliação';
+        $entidade = $this->entidade;
         return view('avaliacao/mostrar', compact('entidade', 'avaliacao'));        
     }
 
@@ -88,7 +89,7 @@ class AvaliacaoController extends Controller
      */
     public function edit(Avaliacao $avaliacao)
     {
-        $entidade = 'Avaliação';
+        $entidade = $this->entidade;
         $exames = Exame::all();
         $turmas = Turma::all();  
         $idProfessor = Tipo::where('nome','Professor')->get('id');

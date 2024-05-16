@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class ParametroController extends Controller
 {
+    private $entidade = 'Parametro';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $entidade = 'Parametro';
+        $entidade = $this->entidade;
         $dados = Parametro::all();
         return view('parametro/mostrartodos', compact('entidade', 'dados'));
     }
@@ -23,7 +24,7 @@ class ParametroController extends Controller
      */
     public function create()
     {
-        $entidade = 'Parametro';
+        $entidade = $this->entidade;
         $turmas = Turma::all();          
         return view('parametro/criar', compact('entidade', 'turmas'));
     }
@@ -54,7 +55,7 @@ class ParametroController extends Controller
      */
     public function edit(Parametro $parametro)
     {
-        $entidade = 'Parametro';
+        $entidade = $this->entidade;
         $turmas = Turma::all();        
         return view('parametro/alterar', compact('entidade','parametro','turmas'));
     }

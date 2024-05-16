@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class TurmaController extends Controller
 {
+    private $entidade = 'Turma';
     /**
      * Display a listing of the resource.
      */
     public function index()
     { 
-        $entidade = 'Turma';
+        $entidade = $this->entidade;
         $dados = Turma::all();
         return view('turma/mostrartodos', compact('entidade', 'dados'));
     }
@@ -22,7 +23,7 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        $entidade = 'Turma';
+        $entidade = $this->entidade;
         return view('turma/criar', compact('entidade'));
     }
 
@@ -50,7 +51,7 @@ class TurmaController extends Controller
      */
     public function edit(Turma $turma)
     {
-        $entidade = 'Turma';
+        $entidade = $this->entidade;
         return view('turma/alterar', compact('entidade','turma'));
     }
 

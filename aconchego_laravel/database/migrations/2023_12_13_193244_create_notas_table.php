@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary(['avaliacao_id', 'parametro_id']);
-            $table->foreign('avaliacao_id')->references('id')->on('avaliacao');
+            $table->foreign('avaliacao_id')->references('id')->on('avaliacao')->onDelete('cascade');
             $table->foreign('parametro_id')->references('id')->on('parametro');                        
         });
     }

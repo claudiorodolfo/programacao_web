@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class ExameController extends Controller
 {
+    private $entidade = 'Exame';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $entidade = 'Exame';
+        $entidade = $this->entidade;
         $dados = Exame::all();
         return view('exame/mostrartodos', compact('entidade', 'dados'));
 
@@ -23,7 +24,7 @@ class ExameController extends Controller
      */
     public function create()
     {
-        $entidade = 'Exame';
+        $entidade = $this->entidade;
         return view('exame/criar', compact('entidade'));
     }
 
@@ -52,7 +53,7 @@ class ExameController extends Controller
      */
     public function edit(Exame $exame)
     {
-        $entidade = 'Exame';
+        $entidade = $this->entidade;
         return view('exame/alterar', compact('entidade','exame'));
     }
 

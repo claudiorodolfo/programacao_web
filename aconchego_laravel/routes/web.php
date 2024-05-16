@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\ExameController;
 use App\Http\Controllers\ParametroController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\AvaliacaoController;
+//use App\Http\Controllers\NotaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,17 +21,19 @@ use App\Http\Controllers\AvaliacaoController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
+
 
 Route::resource("turma", TurmaController::class);
 Route::resource("tipo", TipoController::class);
 Route::resource("exame", ExameController::class);
 Route::resource("parametro", ParametroController::class);
-Route::resource("usuario", UsuarioController::class);
+Route::resource("pessoa", PessoaController::class);
 Route::resource("avaliacao", AvaliacaoController::class);
+//Route::resource("nota", NotaController::class);
 
-Route::get('/usuario/{usuario?}/feedback', [UsuarioController::class, 'feedback'])->name('usuario.feedback');
+Route::get('/pessoa/{pessoa?}/feedback', [PessoaController::class, 'feedback'])->name('pessoa.feedback');
 
 //Rotas de Turma
 /*
@@ -87,3 +91,16 @@ Route::get('/avaliacao/{avaliacao?}/edit', [AvaliacaoController::class, 'edit'])
 Route::put('/avaliacao/{avaliacao?}', [AvaliacaoController::class, 'update'])->name('avaliacao.update');
 Route::delete('/avaliacao/{avaliacao?}', [AvaliacaoController::class, 'destroy'])->name('avaliacao.destroy');
 */
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

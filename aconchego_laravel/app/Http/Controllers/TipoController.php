@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class TipoController extends Controller
 {
+    private $entidade = 'Tipo';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $entidade = 'Tipo';
+        $entidade = $this->entidade;
         $dados = Tipo::all();
         return view('tipo/mostrartodos', compact('entidade', 'dados'));
     }
@@ -22,7 +23,7 @@ class TipoController extends Controller
      */
     public function create()
     {
-        $entidade = 'Tipo';
+        $entidade = $this->entidade;
         return view('tipo/criar', compact('entidade'));
     }
 
@@ -50,7 +51,7 @@ class TipoController extends Controller
      */
     public function edit(Tipo $tipo)
     {
-        $entidade = 'Tipo';
+        $entidade = $this->entidade;
         return view('tipo/alterar', compact('entidade','tipo'));
     }
 
