@@ -1,60 +1,45 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
-    <!-- JQuery JS -->  
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>             
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--Programador-->
-    <title>Criação de {{$entidade}}</title>    
-  </head> 
-  <body>
+
+<head>
+    @include('partials.head', ['entidade' => 'Exame'])
+</head>
+
+<body>
     <div class="container">
-      <form
-      enctype="multipart/form-data"
-      action="{{route('exame.store')}}"
-      method="post">
-      @csrf
-		<h1>Criação de {{$entidade}}</h1>
-		<br>
-        <!--
-            <div class="form-group">
-            <label for="id" class="text-danger">*Id:</label>-->
-            <!--<input 
-              type="hidden" 
-              class="form-control" 
-              id="id" 
-              name="id" 
-              value=""
-               />
-          </div>
-        -->       
-        <div class="form-group">
-            <label for="data" class="text-danger">*Data:</label>
-            <input type="date" 
-              class="form-control" 
-              id="data" 
-              name="data" 
-              value=""
-              Required />
-          </div>
-        <div class="form-group">
-          <label for="nome" class="text-danger">*Nome:</label>
-          <input type="text" 
-            class="form-control" 
-            id="nome" 
-            name="nome" 
-            value=""
-            Required />
-        </div>
-        <br />
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a class="btn btn-danger" href="{{route('exame.index')}}">Cancelar</a>
-      </form>
+        <br> @include('partials.body-logo')
+        <br>
+        <form enctype="multipart/form-data" action="{{route('exame.store')}}" method="post">
+            @csrf
+            <a class="btn btn-outline-secondary bi bi-arrow-left w-25" href="{{route('exame.index')}}"></a>
+            <button type="submit" class="btn btn-outline-success bi bi-save"></button>
+            <br>
+            <br>
+            <table class='table'>
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Criação de {{$entidade}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="data" class="text-danger">*Data:</label>
+                                <input type="date" class="form-control" id="data" name="data" value="" Required />
+                            </div>
+                            <div class="form-group">
+                                <label for="nome" class="text-danger">*Nome:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" value="" Required />
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+        </form>
+        @include('partials.body-rodape')
     </div>
-  </body>
+    <br>
+    <br>
+</body>
+
 </html>

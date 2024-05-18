@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class NotaController extends Controller
 {
+
+    private $entidade = 'Nota';
     /**
      * Display a listing of the resource.
      */

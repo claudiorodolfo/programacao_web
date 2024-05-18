@@ -4,23 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Usuario;
+use App\Models\Pessoa;
 use App\Models\Turma;
 use App\Models\Exame;
+use App\Models\Nota;
 
 class Avaliacao extends Model
 {
     use HasFactory;
     protected $table = 'avaliacao';
 
-    public function usuarioAluno()
+    public function pessoaAluno()
     {
-        return $this->belongsTo(Usuario::class, 'aluno_id');
+        return $this->belongsTo(Pessoa::class, 'aluno_id');
     } 
 
-    public function usuarioProfessor()
+    public function pessoaProfessor()
     {
-        return $this->belongsTo(Usuario::class, 'professor_id');
+        return $this->belongsTo(Pessoa::class, 'professor_id');
     } 
 
     public function turma()
@@ -31,5 +32,10 @@ class Avaliacao extends Model
     public function exame()
     {
         return $this->belongsTo(Exame::class, 'exame_id');
-    }     
+    }
+
+    public function notasAvaliacao()
+    {
+        return $this->hasMany(Nota::class, 'avaliacao_id', 'id');
+    }         
 }

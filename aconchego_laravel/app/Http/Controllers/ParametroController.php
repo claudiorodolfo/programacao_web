@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ParametroController extends Controller
 {
-    private $entidade = 'Parametro';
+    private $entidade = 'Parâmetro';
     /**
      * Display a listing of the resource.
      */

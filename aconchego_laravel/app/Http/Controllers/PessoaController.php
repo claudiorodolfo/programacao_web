@@ -7,54 +7,32 @@ use App\Models\Turma;
 use App\Models\Tipo;
 use App\Models\Avaliacao;
 use App\Models\Nota;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PessoaController extends Controller
 {
     private $entidade = 'Pessoa';
+
     /**
-     * Show the user feedback.
+     * Show the user detailed feedback.
      */
-    public function feedback(Pessoa $pessoa)
+    public function avaliacoes(Pessoa $pessoa)
     {
         $entidade = $this->entidade;
-        $avaliacao = Avaliacao::where('aluno_id', $pessoa->id)->get();
-        $idAvaliacao = $avaliacao[1]->id;
-
-        $cabecalhoFeedback = Avaliacao::select('avaliacao.papel',
-                'avaliacao.status', 
-                'avaliacao.observacao', 
-                'aluno.name as aluno', 
-                'professor.name as professor', 
-                'turma.nome as turma', 
-                'exame.data as exame')
-            ->join('users as aluno', 'avaliacao.aluno_id', '=', 'aluno.id')
-            ->join('users as professor', 'avaliacao.professor_id', '=', 'professor.id')
-            ->join('turma', 'avaliacao.turma_id', '=', 'turma.id')
-            ->join('exame', 'avaliacao.exame_id', '=', 'exame.id')
-            ->where('Avaliacao.id', $idAvaliacao)
-            ->first();      
-        
-        $corpoFeedback = Nota::select('nota.valor', 
-                'parametro.velocidade', 
-                'parametro.quesito')
-            ->join('parametro', 'nota.parametro_id' , '=', 'parametro.id')
-            ->where('nota.avaliacao_id', $idAvaliacao)
+        $avaliacoes = Avaliacao::where('aluno_id', $pessoa->id)
             ->get();
                    
-        return view('pessoa/feedback', compact('entidade', 'cabecalhoFeedback', 'corpoFeedback'));
+        return view('feedback/avaliacoes', compact('entidade', 'avaliacoes'));
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $entidade = $this->entidade;
-        $dados = Pessoa::select('*',
-                'users.name as nome',
-                'users.email')
-        ->join('users', 'pessoa.id', '=', 'users.id')
-        ->get();
+        $dados = Pessoa::all();
 
         return view('pessoa/mostrartodos', compact('entidade', 'dados'));
     }
@@ -67,7 +45,8 @@ class PessoaController extends Controller
         $entidade = $this->entidade;
         $turmas = Turma::all();
         $tipos = Tipo::all();                  
-        return view('pessoa/criar', compact('entidade', 'turmas', 'tipos'));
+        $usuarios = User::doesntHave('usuarioPessoa')->get(); 
+        return view('pessoa/criar', compact('entidade', 'turmas', 'tipos','usuarios'));
     }
 
     /**
@@ -76,14 +55,14 @@ class PessoaController extends Controller
     public function store(Request $request)
     {
         $pessoa = new Pessoa;
-        $pessoa->nome = $request->nome;
-        $pessoa->email = $request->email; 
+        //$pessoa->nome = $request->nome;
+        //$pessoa->email = $request->email; 
         $pessoa->telefone = $request->telefone;
         $pessoa->endereco = $request->endereco;
         $pessoa->esta_ativo = $request->esta_ativo;
         $pessoa->senha = $request->senha;        
         $pessoa->turma_id_condutor = $request->turma_id_condutor;
-        $pessoa->turma_id_conduzido = $request->turma_id_conduzido;                        
+        $pessoa->turma_id_conduzida = $request->turma_id_conduzida;                        
         $pessoa->tipo_id = $request->tipo_id;
         $pessoa->save();
         return redirect()->route('pessoa.index');
@@ -115,14 +94,11 @@ class PessoaController extends Controller
     public function update(Request $request, Pessoa $pessoa)
     {
         $pessoa = Pessoa::find($request->id);
-        $pessoa->nome = $request->nome;
-        $pessoa->email = $request->email; 
         $pessoa->telefone = $request->telefone;
         $pessoa->endereco = $request->endereco;
-        $pessoa->esta_ativo = $request->esta_ativo;
-        $pessoa->senha = $request->senha;        
+        $pessoa->esta_ativo = $request->esta_ativo;       
         $pessoa->turma_id_condutor = $request->turma_id_condutor;
-        $pessoa->turma_id_conduzido = $request->turma_id_conduzido;                        
+        $pessoa->turma_id_conduzida = $request->turma_id_conduzida;                        
         $pessoa->tipo_id = $request->tipo_id;                                
         $pessoa->update();
         return redirect()->route('pessoa.index');

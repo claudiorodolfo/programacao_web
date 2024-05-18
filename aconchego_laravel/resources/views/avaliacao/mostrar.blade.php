@@ -1,78 +1,53 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">        
-    <!-- JQuery JS -->  
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>      
-    <!--Programador-->
-    <title>Controle de {{$entidade}}</title>   
-  </head> 
-  <body>     
+
+<head>
+    @include('partials.head', ['entidade' => 'Avaliação'])
+</head>
+
+<body>
     <div class="container">
+        <br> @include('partials.body-logo')
+        <br>
+        <a class="btn btn-outline-secondary bi bi-arrow-left w-25" href="{{route('avaliacao.index')}}"></a>
+        <br>
+        <br>
+        <table class='table'>
+            <thead class="thead-dark">
+                <tr>
+                    <th>Detalhes de {{$entidade}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="exame" class="text-danger">*Exame:</label>
+                            <input type="text" class="form-control" id="exame" name="exame_id" value="{{$avaliacao->exame->data_formatada}}" Disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="turma" class="text-danger">*Turma:</label>
+                            <input type="text" class="form-control" id="turma" name="turma" value="{{$avaliacao->turma->nome}}" Disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="aluno" class="text-danger">*Aluno:</label>
+                            <input type="text" class="form-control" id="aluno" name="aluno" value="{{$avaliacao->pessoaAluno->usuario->name}}" Disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="professor" class="text-danger">*Professor:</label>
+                            <input type="text" class="form-control" id="professor" name="professor" value="{{$avaliacao->pessoaProfessor->usuario->name}}" Disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="papel" class="text-danger">*Função:</label>
+                            <input type="text" class="form-control" id="papel" name="papel" value="{{$avaliacao->papel}}" Disabled />
+                        </div>
+                    </td>
+                </tr>
+        </table>
+        @include('partials.body-rodape')
+    </div>
     <br>
-    <a class="btn btn-outline-primary" href="{{route('avaliacao.index')}}">Voltar</a>  
-    <br><br>
-    <table class='table table-striped table-bordered'>
-      <tr>
-        <th>Id</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->id}}</td>
-      </tr> 
-      <tr>
-        <th>Exame</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->exame->data}}</td>
-      </tr>
-      <tr>
-        <th>Turma</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->turma->nome}}</td>
-      </tr> 
-      <tr>
-        <th>Aluno</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->usuarioAluno->nome}}</td>
-      </tr> 
-      <tr>
-        <th>Professor</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->usuarioProfessor->nome}}</td>
-      </tr> 
-      <tr>
-        <th>Papel</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->papel}}</td>
-      </tr> 
-      <tr>
-        <th>Observação</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->observacao}}</td>
-      </tr> 
-      <tr>
-        <th>Status</th>
-      </tr>
-      <tr>
-        <td>{{$avaliacao->status}}</td>
-      </tr> 
-      <tr>
-        <th>Rascunho</th>
-      </tr>
-      <tr>
-        <td>{{($avaliacao->rascunho == 0) ? "Não" : "Sim"}}</td>
-      </tr>                                           
-    </table>
-    </div>       
-  </body>
+    <br>
+</body>
+
 </html>

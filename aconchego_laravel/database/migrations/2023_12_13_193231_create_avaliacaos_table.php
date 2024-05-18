@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('papel');            
             $table->text('observacao')->nullable();
             $table->string('status')->nullable();
-            $table->boolean('rascunho');                                                                                                
+            $table->boolean('rascunho')->default(true);                                                                                                
             $table->timestamps();
 
             //$table->primary('id');            

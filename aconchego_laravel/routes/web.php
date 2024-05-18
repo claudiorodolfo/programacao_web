@@ -24,6 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/principal', function () {
+    return view('principal');
+})->name('principal');
 
 Route::resource("turma", TurmaController::class);
 Route::resource("tipo", TipoController::class);
@@ -33,8 +36,9 @@ Route::resource("pessoa", PessoaController::class);
 Route::resource("avaliacao", AvaliacaoController::class);
 //Route::resource("nota", NotaController::class);
 
-Route::get('/pessoa/{pessoa?}/feedback', [PessoaController::class, 'feedback'])->name('pessoa.feedback');
-
+Route::get('/feedback/{pessoa?}/avaliacoes', [PessoaController::class, 'avaliacoes'])->name('feedback.avaliacoes');
+Route::get('/feedback/{avaliacao?}/relatorio', [AvaliacaoController::class, 'relatorio'])->name('feedback.relatorio');
+Route::get('/feedback/{avaliacao?}/criarRelatorio', [AvaliacaoController::class, 'criarRelatorio'])->name('feedback.criarRelatorio');
 //Rotas de Turma
 /*
 Route::get('/turma', [TurmaController::class, 'index'])->name('turma.index');

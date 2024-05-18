@@ -1,83 +1,57 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">        
-    <!-- JQuery JS -->  
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>      
-    <!--Programador-->
-    <title>Controle de {{$entidade}}</title>   
-  </head> 
-  <body>        
+
+<head>
+    @include('partials.head', ['entidade' => 'Pessoa'])
+</head>
+
+<body>
     <div class="container">
+        <br> @include('partials.body-logo')
+        <br>
+        <a class="btn btn-outline-secondary bi bi-arrow-left w-25" href="{{route('pessoa.index')}}"></a>
+        <br>
+        <br>
+        <table class='table'>
+            <thead class="thead-dark">
+                <div class="form-group">
+                    <label for="nome" class="text-danger">*Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="{{$pessoa->usuario->name}}" Disabled />
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-danger">*E-mail:</label>
+                    <input type="text" class="form-control" id="email" name="email" value="{{$pessoa->usuario->email}}" Disabled />
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" class="form-control" id="telefone" name="telefone" value="{{$pessoa->telefone_formatado}}" Disabled />
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço:</label>
+                    <textarea class="form-control" id="endereco" rows="3" name="endereco" Disabled>{{$pessoa->endereco}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="turma_condutor">Turma Condutor(a):</label>
+                    <input type="text" class="form-control" id="turma_condutor" name="turma_condutor" value="{{$pessoa->turmaCondutor->nome ?? " " }}" Disabled />
+                </div>
+                <div class="form-group">
+                    <label for="turma_conduzida">Turma Conduzida(o):</label>
+                    <input type="text" class="form-control" id="turma_conduzida" name="turma_conduzida" value="{{$pessoa->turmaConduzida->nome ?? " " }}" Disabled /> </div>
+                <div class="form-group">
+                    <label for="tipo" class="text-danger">*Tipo:</label>
+                    <input type="text" class="form-control" id="tipo" name="tipo" value="{{$pessoa->tipo->nome}}" Disabled />
+                </div>
+                <div class="form-group">
+                    <label for="esta_ativo" class="text-danger">*Ativo:</label>
+                    <input type="text" class="form-control" id="esta_ativo" name="esta_ativo" value="{{$pessoa->esta_ativo_formatado}}" Disabled />
+                </div>
+                </td>
+                </tr>
+        </table>
+        @include('partials.body-rodape')
+    </div>
     <br>
-    <a
-      style="border-radius:50px"
-      class="btn btn-outline-primary" 
-      href="{{route('pessoa.index')}}">
-      Voltar
-    </a> 
-    <br><br>
-    <table class='table table-striped table-bordered'>
-      <!--<tr>
-        <th>Id</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->id}}</td>
-      </tr> 
-      <tr>-->
-        <th>Nome</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->nome}}</td>
-      </tr>
-      <tr>
-        <th>E-mail</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->email}}</td>
-      </tr> 
-      <tr>
-        <th>Telefone</th>
-      </tr>
-      <tr>
-        <td id="telefone">{{$pessoa->telefone}}</td>
-      </tr> 
-      <tr>
-        <th>Endereço</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->endereco}}</td>
-      </tr> 
-      <tr>
-        <th>Turma Condutor(a)</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->turmaCondutor->nome ?? "" }}</td>
-      </tr> 
-      <tr>
-        <th>Turma Conduzido(a)</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->turmaConduzido->nome ?? "" }}</td>
-      </tr> 
-      <tr>
-        <th>Tipo</th>
-      </tr>
-      <tr>
-        <td>{{$pessoa->tipo->nome}}</td>
-      </tr> 
-      <tr>
-        <th>Ativo</th>
-      </tr>
-      <tr>
-        <td>{{($pessoa->esta_ativo == 0) ? "Não" : "Sim"}}</td>
-      </tr>                                           
-    </table>
-    </div>          
-  </body>
+    <br>
+</body>
+
 </html>

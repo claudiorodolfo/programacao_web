@@ -4,22 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Usuario;
+use App\Models\Pessoa;
 use App\Models\Parametro;
+use App\Models\Avaliacao;
 
 class Turma extends Model
 {
     use HasFactory;
     protected $table = 'turma';
 
-    public function usuariosConduzidosTurma()
+    public function pessoasConduzidasTurma()
     {
-        return $this->hasMany(Usuario::class, 'turma_id_conduzido', 'id');
+        return $this->hasMany(Pessoa::class, 'turma_id_conduzida', 'id');
     }
 
-    public function usuariosCondutoresTurma()
+    public function pessoasCondutoresTurma()
     {
-        return $this->hasMany(Usuario::class, 'turma_id_condutor', 'id');
+        return $this->hasMany(Pessoa::class, 'turma_id_condutor', 'id');
     }
 
     public function parametrosTurma()
