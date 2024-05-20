@@ -23,7 +23,7 @@ class PessoaController extends Controller
         $avaliacoes = Avaliacao::where('aluno_id', $pessoa->id)
             ->get();
                    
-        return view('feedback/avaliacoes', compact('entidade', 'avaliacoes'));
+        return view('aluno/avaliacoes', compact('entidade', 'avaliacoes'));
     }
 
     /**

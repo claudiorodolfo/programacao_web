@@ -1,0 +1,47 @@
+@media print {
+    .controles {
+        display: none;
+    }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding:15px 0px;
+}
+
+.controles {
+    padding:0px 15px;
+}
+
+.item {
+    background-color: #fff;
+    border: 1px solid #e3e6f0;
+    border-radius: 10px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,.15);
+    margin-bottom: 5px;
+    padding: 15px;
+}
+
+.text-title {
+    background: #800000;
+    color:#fff;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+div .logo {
+    display: flex; 
+    justify-content:center;
+}
+
+.rodape {
+    padding:0px 15px;   
+}

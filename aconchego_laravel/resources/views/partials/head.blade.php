@@ -8,26 +8,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>      
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <!--Programador-->
-    <title>Controle de {{$entidade ?? 'Entidade'}}</title>
-    <style>
-        div .logo {
-            display: flex; 
-            justify-content:center;
-        }
-        thead {
-            background-color: #800000; 
-            color: white;
-        }
-
-        tbody tr:hover {
-            /*background-color: #D9AC25;*/
-        }
-
-        tbody td a {
-            text-decoration: none; 
-            color:inherit; 
-            display:block;
-            height:100%;
-            width:100%;
-        }
-    </style>
+    <link rel="stylesheet" href="/aconchego_laravel/resources/css/estilo.css">

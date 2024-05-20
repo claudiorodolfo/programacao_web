@@ -2,43 +2,39 @@
 <html lang="pt-br">
 
 <head>
-    @include('partials.head', ['entidade' => 'Avaliação']) @include('partials.head-script')
+    @include('partials.head')
+    <script type="text/javascript" src="/aconchego_laravel/resources/js/script.js"></script>    
+    <title>Controle de {{$entidade}}</title>
 </head>
 
 <body>
     <div class="container">
-        <br> @include('partials.body-logo')
+        <br> 
+        @include('partials.body-logo')
         <br>
-        <a class="btn btn-outline-secondary bi bi-arrow-left w-25" href="{{route('principal')}}"></a>
-        <a class="btn btn-outline-success bi bi-plus-circle" href="{{route('avaliacao.create')}}"></a>
+        <div class="controles">
+            <a class="btn btn-outline-secondary bi bi-arrow-left w-25" href="{{route('admin')}}"></a>
+            <a class="btn btn-outline-success  bi bi-plus-circle" href="{{route('avaliacao.create')}}"></a>
+        </div>
         <br>
         <br>
-        <table class='table'>
-            <thead class="thead-dark">
-                <tr>
-                    <th>Ações</th>
-                    <th>Id</th>
-                    <th>Aluno</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($dados as $item)
-                <tr>
-                    <td>
-                        <button class="btn btn-outline-info bi bi-eye" onclick="mostrar('mostrar','{{route('avaliacao.show', $item->id)}}')">
-                        </button>
-                        <button class="btn btn-outline-primary bi-pencil" onclick="atualizar('atualizar','{{route('avaliacao.edit', $item->id)}}')">
-                        </button>
-                        <button class="btn btn-outline-danger bi bi-trash" onclick="apagar('apagar','{{route('avaliacao.destroy', $item->id)}}')">
-                        </button>
-                        <td>{{$item->id}}</td>
-                        <td>{{$item->pessoaAluno->usuario->name}}</td>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @foreach ($dados as $item)
+        <div class="item">
+            <h5>{{$item->pessoaAluno->usuario->name}}</h5>            
+            <p><strong>Turma: </strong>{{$item->turma->nome}}</p>
+            <p><strong>Papel: </strong>{{$item->papel}}</p>
+            <div class="d-flex">
+                <button class="btn btn-outline-info bi bi-eye" onclick="mostrar('mostrar','{{route('avaliacao.show', $item->id)}}')">
+                </button>
+                <button class="btn btn-outline-primary bi bi-pencil" onclick="atualizar('atualizar','{{route('avaliacao.edit', $item->id)}}')">
+                </button>
+                <button class="btn btn-outline-danger bi bi-trash" onclick="apagar('apagar','{{route('avaliacao.destroy', $item->id)}}')">
+                </button>
+            </div>
+        </div>
+        @endforeach
         @include('partials.body-form') 
+        <br>
         @include('partials.body-rodape')
     </div>
     <br>

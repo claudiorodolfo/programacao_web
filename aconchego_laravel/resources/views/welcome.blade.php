@@ -6,6 +6,16 @@
 
         <title>Laravel</title>
 
+        <!-- Meta tags para Mobile -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <!-- Meta tags para iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="Controle de Feedback">
+        <link rel="apple-touch-icon" href="images/icon-192x192.png">
+        <link rel="apple-touch-startup-image" href="images/icon-512x512.png">        
+        <!-- Link para o manifesto -->
+        <link rel="manifest" href="manifest.json">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />

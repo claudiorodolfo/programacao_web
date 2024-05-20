@@ -18,17 +18,17 @@ class AvaliacaoController extends Controller
     /**
      * Show the user detailed feedback.
      */
-    public function criarRelatorio(Avaliacao $avaliacao)
+    public function criarAvaliacao(Avaliacao $avaliacao)
     {
         $entidade = $this->entidade;
         $avaliacao = Avaliacao::where('id',$avaliacao->id)->first();
-        return view('feedback/criar', compact('entidade','avaliacao'));
+        return view('professor/criar-avaliacao', compact('entidade','avaliacao'));
     }
 
     /**
      * Show the user detailed feedback.
      */
-    public function relatorio(Avaliacao $avaliacao)
+    public function feedback(Avaliacao $avaliacao)
     {
         $entidade = $this->entidade;
         $cabecalhoFeedback = Avaliacao::where('id', $avaliacao->id)
@@ -42,7 +42,7 @@ class AvaliacaoController extends Controller
 			->orderBy('parametro.velocidade')
             ->get();
                    
-        return view('feedback/relatorio', compact('entidade', 'cabecalhoFeedback', 'corpoFeedback'));
+        return view('aluno/feedback', compact('entidade', 'cabecalhoFeedback', 'corpoFeedback'));
     }
 
     /**
