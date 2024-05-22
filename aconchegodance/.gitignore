@@ -1,0 +1,66 @@
+# WordPress Core
+/wp-admin/
+/wp-includes/
+
+# Files and directories that should not be versioned
+*.log
+*.sql
+*.sqlite
+*.tar.gz
+*.zip
+*.env
+composer.lock
+node_modules/
+vendor/
+.DS_Store
+Thumbs.db
+.sass-cache/
+*.sass-cache
+
+# Ignore the uploads directory, except for mu-plugins and plugins
+/wp-content/uploads/*
+!/wp-content/uploads/mu-plugins/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backup-db/
+/wp-content/backups/
+/wp-content/wp-cache-config.php
+/wp-content/advanced-cache.php
+/wp-content/cache-config.php
+
+# Ignore the plugins and themes directory, except for custom ones
+/wp-content/plugins/*
+!/wp-content/plugins/my-custom-plugin/
+/wp-content/themes/*
+!/wp-content/themes/my-custom-theme/
+
+# Ignore configuration files
+wp-config.php
+wp-config-*.php
+
+# Ignore any personal backup files or directories
+backup/
+backups/
+
+# Ignore sensitive files that should not be exposed
+.htaccess
+.env
+
+# Ignore IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore npm and yarn lock files
+package-lock.json
+yarn.lock
+
+# Ignore compiled CSS and JS files
+*.min.css
+*.min.js
+*.map
+
+# Ignore build directories
+build/
+dist/
